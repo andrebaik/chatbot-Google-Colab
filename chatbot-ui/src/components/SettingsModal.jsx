@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const ACCENT_COLORS = [
   { name: "Orange", value: "#ff8c00" },
@@ -17,53 +19,34 @@ export default function SettingsModal({
   accentColor,
   onChangeAccent,
 }) {
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="fixed inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative z-10 w-full max-w-sm bg-stone-900 border border-stone-800 rounded-xl p-6 shadow-xl">
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-base font-medium text-stone-200">Pengaturan</h2>
-          <button
-            onClick={onClose}
-            className="text-stone-500 hover:text-stone-300 transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
-
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-w-sm">
+        <DialogHeader>
+          <DialogTitle>Pengaturan</DialogTitle>
+          <DialogDescription>Sesuaikan tampilan chatbot</DialogDescription>
+        </DialogHeader>
         <div className="space-y-5">
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-stone-200">GridScan Background</p>
-              <p className="text-[12px] text-stone-500">Animasi 3D grid di latar belakang</p>
+            <div className="space-y-0.5">
+              <Label htmlFor="grid-scan">GridScan Background</Label>
+              <p className="text-xs text-muted-foreground">Animasi 3D grid di latar belakang</p>
             </div>
-            <button
-              onClick={onToggleGridScan}
-              className={`relative w-10 h-5 rounded-full transition-colors ${
-                gridScanEnabled ? "bg-orange-600" : "bg-stone-700"
-              }`}
-            >
-              <div
-                className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                  gridScanEnabled ? "translate-x-5" : "translate-x-0.5"
-                }`}
-              />
-            </button>
+            <Switch
+              id="grid-scan"
+              checked={gridScanEnabled}
+              onCheckedChange={onToggleGridScan}
+            />
           </div>
-
           <div>
-            <p className="text-sm text-stone-200 mb-2.5">Warna Aksen</p>
+            <Label className="mb-2.5 block">Warna Aksen</Label>
             <div className="flex gap-2.5">
               {ACCENT_COLORS.map((c) => (
                 <button
                   key={c.name}
                   onClick={() => onChangeAccent(c.value)}
                   className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform hover:scale-110 ${
-                    accentColor === c.value ? "ring-2 ring-white ring-offset-2 ring-offset-stone-900 scale-110" : ""
+                    accentColor === c.value ? "ring-2 ring-white ring-offset-2 ring-offset-background scale-110" : ""
                   }`}
                   style={{ backgroundColor: c.value }}
                   title={c.name}
@@ -78,7 +61,7 @@ export default function SettingsModal({
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

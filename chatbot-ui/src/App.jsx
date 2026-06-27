@@ -1,11 +1,15 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { nanoid } from "nanoid";
+import { toast } from "sonner";
 import useLocalStorage from "./hooks/useLocalStorage";
 import ChatArea from "./components/ChatArea";
 import ChatInput from "./components/ChatInput";
 import Sidebar from "./components/Sidebar";
 import SettingsModal from "./components/SettingsModal";
 import { GridScan } from "./components/GridScan";
+import Presentation from "./components/Presentation";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const API_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, "");
 
@@ -26,11 +30,10 @@ export default function App() {
   const [streamingContent, setStreamingContent] = useState(null);
   const [inputFocused, setInputFocused] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [gridScanEnabled, setGridScanEnabled] = useLocalStorage("chatbot-gridscan", true);
   const [accentColor, setAccentColor] = useLocalStorage("chatbot-accent", "#ff8c00");
+  const [page, setPage] = useState("landing");
   const abortRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -257,30 +260,6 @@ export default function App() {
     setInputFocused(false);
   }
 
-  async function handleUploadPdf(file) {
-    setUploading(true);
-    setUploadStatus(null);
-    const formData = new FormData();
-    formData.append("file", file);
-    try {
-      const res = await fetch(`${API_URL}/api/upload/pdf`, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setUploadStatus({ type: "error", message: data.detail || `Server error ${res.status}` });
-      } else {
-        setUploadStatus({ type: data.status === "ok" ? "success" : "error", message: data.message });
-      }
-    } catch (e) {
-      setUploadStatus({ type: "error", message: "Gagal upload PDF: " + (e.message || "") });
-    } finally {
-      setUploading(false);
-      setTimeout(() => setUploadStatus(null), 4000);
-    }
-  }
-
   function handleExport() {
     const data = JSON.stringify(conversations, null, 2);
     const blob = new Blob([data], { type: "application/json" });
@@ -299,11 +278,9 @@ export default function App() {
         const imported = JSON.parse(e.target.result);
         if (!Array.isArray(imported)) throw new Error("Format tidak valid");
         setConversations(prev => [...imported, ...prev]);
-        setUploadStatus({ type: "success", message: `Berhasil import ${imported.length} percakapan` });
-        setTimeout(() => setUploadStatus(null), 4000);
+        toast.success(`Berhasil import ${imported.length} percakapan`);
       } catch {
-        setUploadStatus({ type: "error", message: "File JSON tidak valid" });
-        setTimeout(() => setUploadStatus(null), 4000);
+        toast.error("File JSON tidak valid");
       }
     };
     reader.readAsText(file);
@@ -321,8 +298,20 @@ export default function App() {
     setAccentColor(color);
   }
 
+  if (page === "landing") {
+    return (
+      <>
+        <TooltipProvider>
+          <Presentation onStart={() => setPage("chat")} />
+        </TooltipProvider>
+        <Toaster />
+      </>
+    );
+  }
+
   return (
-    <div className="h-dvh bg-stone-950 text-stone-200 flex overflow-hidden">
+    <TooltipProvider>
+      <div className="h-dvh bg-stone-950 text-stone-200 flex overflow-hidden">
       <Sidebar
         conversations={conversations}
         activeConvId={activeConvId}
@@ -411,27 +400,16 @@ export default function App() {
             </div>
 
             <div className="shrink-0 max-w-2xl mx-auto w-full px-4 sm:px-6 pb-4">
-              {uploadStatus && (
-                <div className={`mb-2 px-3 py-2 rounded-lg text-[13px] text-center transition-all ${
-                  uploadStatus.type === "success"
-                    ? "bg-emerald-900/40 text-emerald-300"
-                    : "bg-red-900/40 text-red-300"
-                }`}>
-                  {uploadStatus.type === "success" ? "✓ " : "✕ "}
-                  {uploadStatus.message}
-                </div>
-              )}
               <ChatInput
                 input={input}
                 setInput={setInput}
                 onSend={sendMessage}
                 onStop={handleStopGeneration}
-                loading={loading || uploading}
+                loading={loading}
                 isStreaming={isStreaming}
                 inputRef={inputRef}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
-                onUpload={handleUploadPdf}
               />
             </div>
           </div>
@@ -445,6 +423,8 @@ export default function App() {
         accentColor={accentColor}
         onChangeAccent={handleChangeAccent}
       />
-    </div>
+      </div>
+      <Toaster />
+    </TooltipProvider>
   );
 }
