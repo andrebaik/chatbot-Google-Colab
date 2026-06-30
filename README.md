@@ -53,19 +53,19 @@
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/Google%20Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" />
   <img src="https://img.shields.io/badge/HuggingFace-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" />
-  <img src="https://img.shields.io/badge/Qwen2.5-3B-FF8C00?style=for-the-badge&logo=🤖&logoColor=white" />
+  <img src="https://img.shields.io/badge/Qwen2.5-3B-FF8C00?style=for-the-badge" />
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
-  <img src="https://img.shields.io/badge/BitsAndBytes-FF6F00?style=for-the-badge&logo=🧮&logoColor=white" />
+  <img src="https://img.shields.io/badge/BitsAndBytes-FF6F00?style=for-the-badge" />
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
-  <img src="https://img.shields.io/badge/Uvicorn-4B8BBE?style=for-the-badge&logo=uvicorn&logoColor=white" />
-  <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" />
-  <img src="https://img.shields.io/badge/ChromaDB-4A154B?style=for-the-badge&logo=chromadb&logoColor=white" />
-  <img src="https://img.shields.io/badge/BAAI%2Fbge--m3-8E44AD?style=for-the-badge&logo=🤗&logoColor=white" />
-  <img src="https://img.shields.io/badge/PyPDFLoader-FF6B6B?style=for-the-badge&logo=📄&logoColor=white" />
+  <img src="https://img.shields.io/badge/Uvicorn-4B8BBE?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/ChromaDB-4A154B?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/BAAI%2Fbge--m3-8E44AD?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/PyPDFLoader-FF6B6B?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Cloudflare%20Tunnel-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" />
-  <img src="https://img.shields.io/badge/ROUGE-0D1117?style=for-the-badge&logo=📊&logoColor=white" />
+  <img src="https://img.shields.io/badge/ROUGE-0D1117?style=for-the-badge" />
 </p>
 
 ### Frontend
@@ -74,7 +74,7 @@
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
   <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" />
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white" />
   <img src="https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white" />
   <img src="https://img.shields.io/badge/Lucide%20Icons-F56565?style=for-the-badge&logo=lucide&logoColor=white" />
