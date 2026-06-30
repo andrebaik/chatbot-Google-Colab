@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg" width="0" height="0" />
   <h1 align="center">
-    <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Oxanium&pause=1000&color=F77609&width=435&lines=Chatbot+RAG;Qwen2.5+3B+%7C+FastAPI+%7C+ChromaDB;8+PDF+%7C+RAG+Pipeline+%7C+Streaming" alt="Typing SVG" /></a>
+    <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Oxanium&size=36&pause=1000&color=F77609&width=435&lines=Chatbot+RAG;Qwen2.5+3B+%7C+FastAPI+%7C+ChromaDB;8+PDF+%7C+RAG+Pipeline+%7C+Streaming" alt="Typing SVG" /></a>
   </h1>
   <p align="center">
     <b>RAG-powered Indonesian-language chatbot</b> — combines a 4-bit quantized <b>Qwen2.5-3B-Instruct</b> LLM with a <b>ChromaDB</b> vector store and <b>FastAPI</b> backend, wrapped in a modern <b>React + TailwindCSS</b> frontend.
