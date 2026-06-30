@@ -4,40 +4,40 @@
     <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Oxanium&size=36&pause=1000&color=F77609&width=600&center=true&vCenter=true&lines=Chatbot+RAG;Qwen2.5+3B+%7C+FastAPI+%7C+ChromaDB;8+PDF+%7C+RAG+Pipeline+%7C+Streaming" alt="Typing SVG" /></a>
   </h1>
   <p align="center">
-    <b>RAG-powered Indonesian-language chatbot</b> — combines a 4-bit quantized <b>Qwen2.5-3B-Instruct</b> LLM with a <b>ChromaDB</b> vector store and <b>FastAPI</b> backend, wrapped in a modern <b>React + TailwindCSS</b> frontend.
+    <b>Chatbot RAG berbahasa Indonesia</b> — menggabungkan LLM <b>Qwen2.5-3B-Instruct</b> (4-bit quantized) dengan vector store <b>ChromaDB</b> dan backend <b>FastAPI</b>, dibungkus dalam frontend modern <b>React + TailwindCSS</b>.
   </p>
   <p align="center">
     <a href="#-tech-stack">Tech Stack</a> •
-    <a href="#-features">Features</a> •
-    <a href="#-project-structure">Structure</a> •
-    <a href="#-quick-start">Quick Start</a> •
-    <a href="#-rouge-evaluation">ROUGE Eval</a>
+    <a href="#-fitur">Fitur</a> •
+    <a href="#-struktur-proyek">Struktur</a> •
+    <a href="#-panduan-instalasi">Instalasi</a> •
+    <a href="#-evaluasi-rouge">ROUGE</a>
   </p>
 </div>
 
 ---
 
-## Features
+## ✨ Fitur
 
 <table>
 <tr>
 <td>
 
-- **Retrieval-Augmented Generation (RAG)** — answers grounded in 8 PDF textbooks (Java, Python, Git, MySQL, GenAI, Web Programming, etc.)
-- **4-bit Quantized LLM** — Qwen2.5-3B-Instruct loaded with BitsAndBytes `nf4`, runs on a single Tesla T4 (Colab)
-- **Streaming Responses** — SSE-powered real-time token streaming via FastAPI
-- **Smart Intent Detection** — automatically classifies queries as coding error, coding help, general question, or general chat
-- **Topic-Aware Retrieval** — `detect_topic()` maps keywords to specific PDFs, filters ChromaDB context accordingly
+- **Retrieval-Augmented Generation (RAG)** — jawaban berdasarkan 8 buku PDF (Java, Python, Git, MySQL, GenAI, Web Programming, dll)
+- **LLM 4-bit Quantized** — Qwen2.5-3B-Instruct dengan BitsAndBytes `nf4`, berjalan di satu Tesla T4 (Colab)
+- **Streaming Responses** — token real-time via SSE melalui FastAPI
+- **Deteksi Intent Pintar** — otomatis mengklasifikasikan pertanyaan sebagai error coding, bantuan coding, pertanyaan umum, atau obrolan biasa
+- **Retrieval Sadar Topik** — `detect_topic()` memetakan kata kunci ke PDF spesifik, memfilter konteks ChromaDB
 
 </td>
 <td>
 
-- **Persistent Vector Store** — ChromaDB backed by Google Drive + manifest system for incremental PDF updates
-- **Cloudflare Tunnel** — exposes Colab-hosted backend to the internet without deployment
-- **Modern UI** — React 19 + TailwindCSS v4 + GSAP animations + Three.js particle effects
-- **Conversation Management** — create, rename, delete, export, import chat histories
-- **Dark Mode** — premium dark theme with accent color customization
-- **ROUGE Evaluation** — built-in 90-question benchmark across 8 PDF categories
+- **Vector Store Persisten** — ChromaDB dengan backup Google Drive + sistem manifest untuk update PDF inkremental
+- **Cloudflare Tunnel** — mengekspos backend Colab ke internet tanpa perlu deploy
+- **UI Modern** — React 19 + TailwindCSS v4 + animasi GSAP + efek partikel Three.js
+- **Manajemen Percakapan** — buat, rename, hapus, export, import riwayat chat
+- **Dark Mode** — tema gelap premium dengan kustomisasi warna aksen
+- **Evaluasi ROUGE** — benchmark 90 pertanyaan bawaan di 8 kategori PDF
 
 </td>
 </tr>
@@ -45,7 +45,7 @@
 
 ---
 
-## Tech Stack
+## 🤖 Tech Stack
 
 ### Backend & AI
 
@@ -82,81 +82,113 @@
 
 ---
 
-## Project Structure
+## 📁 Struktur Proyek
 
 ```
- chatbot/
-├──  backend/
-│   └── chatbot.ipynb              # Full pipeline: install → load PDFs → chunk → embed → ChromaDB → load LLM → FastAPI
+📦 chatbot/
+├── 📓 backend/
+│   └── chatbot.ipynb              # Pipeline lengkap: install → load PDF → chunk → embed → ChromaDB → load LLM → FastAPI
 │
-├──  chatbot-ui/                  # React frontend
+├── 🌐 chatbot-ui/                  # Frontend React
 │   ├── src/
-│   │   ├── components/             # UI components
-│   │   │   ├── ChatArea.jsx        # Message list with markdown rendering
-│   │   │   ├── ChatInput.jsx       # Input bar with send/stop
-│   │   │   ├── Sidebar.jsx         # Conversation sidebar
-│   │   │   ├── WelcomeScreen.jsx   # Landing page
-│   │   │   ├── Presentation.jsx    # Intro animation
-│   │   │   ├── GridScan.jsx        # Three.js scan-line effect
-│   │   │   ├── SettingsModal.jsx   # Accent color + grid toggle
-│   │   │   ├── MessageBubble.jsx   # Chat message display
-│   │   │   ├── TypingIndicator.jsx # Loading animation
-│   │   │   ├── CopyButton.jsx      # Copy code button
-│   │   │   ├── Shuffle.jsx         # Decorative text shuffle
-│   │   │   ├── BlurText.jsx        # Text blur animation
-│   │   │   ├── SplitText.jsx       # Text split animation
-│   │   │   └── ui/                 # shadcn/ui primitives
+│   │   ├── components/             # Komponen UI
+│   │   │   ├── ChatArea.jsx        # Daftar pesan dengan markdown
+│   │   │   ├── ChatInput.jsx       # Input chat dengan tombol kirim/stop
+│   │   │   ├── Sidebar.jsx         # Sidebar percakapan
+│   │   │   ├── WelcomeScreen.jsx   # Halaman awal
+│   │   │   ├── Presentation.jsx    # Animasi intro
+│   │   │   ├── GridScan.jsx        # Efek scan-line Three.js
+│   │   │   ├── SettingsModal.jsx   # Pengaturan warna aksen + grid
+│   │   │   ├── MessageBubble.jsx   # Tampilan pesan chat
+│   │   │   ├── TypingIndicator.jsx # Animasi loading
+│   │   │   ├── CopyButton.jsx      # Tombol salin kode
+│   │   │   ├── Shuffle.jsx         # Animasi teks acak
+│   │   │   ├── BlurText.jsx        # Animasi blur teks
+│   │   │   ├── SplitText.jsx       # Animasi pecah teks
+│   │   │   └── ui/                 # Primitif shadcn/ui
 │   │   ├── hooks/
-│   │   │   └── useLocalStorage.js  # Persistent localStorage hook
-│   │   └── App.jsx                 # Main app with state management
+│   │   │   └── useLocalStorage.js  # Hook localStorage persisten
+│   │   └── App.jsx                 # Aplikasi utama dengan state management
 │   ├── package.json
 │   └── vite.config.js
 │
-├──  docs/                        # Documentation & specs
-├──  .gitignore
-└──  README.md
+├── 📄 docs/                        # Dokumentasi & spesifikasi
+├── 🔒 .gitignore
+└── 📖 README.md
 ```
 
 ---
 
-## Quick Start
+## 🚀 Panduan Instalasi
 
 ### 1. Backend (Google Colab)
 
 <a href="https://colab.research.google.com/drive/1-842e9EH3hmfSBHJSPaVHu_Cduuh_p9k" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" />
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Buka di Colab" />
 </a>
 
-| Step | Action |
-|------|--------|
-| 1 | Open the notebook in Colab |
-| 2 | Run all cells — this installs dependencies, loads 8 PDFs, chunks & embeds them into ChromaDB, loads Qwen2.5-3B-Instruct (4-bit), and starts FastAPI on port **8010** |
-| 3 | A Cloudflare Tunnel URL is generated automatically — copy the public URL |
-| 4 | Set `VITE_API_URL` in `chatbot-ui/.env` to your tunnel URL |
+| Langkah | Aksi |
+|---------|------|
+| 1 | Buka notebook di Colab |
+| 2 | Jalankan semua cell — akan menginstal dependencies, load 8 PDF, chunk & embed ke ChromaDB, load Qwen2.5-3B-Instruct (4-bit), dan menjalankan FastAPI di port **8010** |
+| 3 | URL Cloudflare Tunnel akan tergenerate otomatis — salin URL publiknya |
+| 4 | Set `VITE_API_URL` di `chatbot-ui/.env` dengan URL tunnel kamu |
 
-> **Note:** The notebook requires a Hugging Face token (`HF`) stored as a Colab secret. GPU runtime (Tesla T4+) is strongly recommended.
+> **Catatan:** Notebook membutuhkan token Hugging Face (`HF`) yang disimpan sebagai Colab secret. Runtime GPU (Tesla T4+) sangat disarankan.
 
 ### 2. Frontend
 
 ```bash
 cd chatbot-ui
 cp .env.example .env
-# Set VITE_API_URL to your Colab tunnel URL
+# Isi VITE_API_URL dengan URL tunnel Colab kamu
 
 npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser.
+Buka `http://localhost:5173` di browser.
 
 ---
 
-## ROUGE Evaluation
+## 📊 Evaluasi ROUGE
 
-The system includes an automated 90-question benchmark across **8 PDF categories**:
+Sistem memiliki benchmark otomatis **90 pertanyaan** di **8 kategori PDF**:
 
-| Category | Questions | ROUGE-1 | ROUGE-2 | ROUGE-L |
-|----------|-----------|---------|---------|---------|
+### ROUGE-1 (Unigram)
+
+```mermaid
+xychart-beta
+    title "ROUGE-1 per Kategori"
+    x-axis ["Java", "Coding", "GenAI", "MySQL", "Web", "Git", "Python", "Full"]
+    y-axis "ROUGE-1" 0 --> 0.2
+    bar [0.073, 0.097, 0.149, 0.043, 0.066, 0.036, 0.040, 0.063]
+```
+
+### ROUGE-2 (Bigram)
+
+```mermaid
+xychart-beta
+    title "ROUGE-2 per Kategori"
+    x-axis ["Java", "Coding", "GenAI", "MySQL", "Web", "Git", "Python", "Full"]
+    y-axis "ROUGE-2" 0 --> 0.1
+    bar [0.022, 0.050, 0.081, 0.006, 0.020, 0.008, 0.007, 0.015]
+```
+
+### ROUGE-L (Longest Common Subsequence)
+
+```mermaid
+xychart-beta
+    title "ROUGE-L per Kategori"
+    x-axis ["Java", "Coding", "GenAI", "MySQL", "Web", "Git", "Python", "Full"]
+    y-axis "ROUGE-L" 0 --> 0.2
+    bar [0.062, 0.085, 0.139, 0.041, 0.056, 0.034, 0.035, 0.057]
+```
+
+### Tabel Detail
+
+| Kategori | Jumlah Soal | ROUGE-1 | ROUGE-2 | ROUGE-L |
+|----------|:-----------:|:-------:|:-------:|:-------:|
 | Java (Dasar Pemrograman) | 10 | 0.073 | 0.022 | 0.062 |
 | Coding Dasar | 10 | 0.097 | 0.050 | 0.085 |
 | GenAI (Buku Panduan) | 10 | **0.149** | **0.081** | **0.139** |
@@ -165,54 +197,54 @@ The system includes an automated 90-question benchmark across **8 PDF categories
 | Git (ProGit) | 10 | 0.036 | 0.008 | 0.034 |
 | Python (PythonLearn) | 20 | 0.040 | 0.007 | 0.035 |
 | Komputer FULL | 10 | 0.063 | 0.015 | 0.057 |
-| **Overall** | **90** | **0.067** | **0.024** | **0.061** |
+| **Rata-rata** | **90** | **0.067** | **0.024** | **0.061** |
 
-> Evaluation methodology: Each question's answer is compared against the ground-truth reference from the source PDF using the ROUGE metric.
+> **Metodologi:** Setiap jawaban model dibandingkan dengan referensi ground-truth dari PDF sumber menggunakan metrik ROUGE.
 
 ---
 
-## Architecture
+## 🧠 Arsitektur
 
 ```mermaid
 graph LR
-    A[PDF Files<br/>8 textbooks] --> B[PyPDFLoader]
+    A[File PDF<br/>8 buku] --> B[PyPDFLoader]
     B --> C[RecursiveCharacter<br/>TextSplitter]
     C --> D[BAAI/bge-m3<br/>Embeddings]
     D --> E[(ChromaDB<br/>Vector Store)]
     
-    F[User Query] --> G{Intent & Topic<br/>Detection}
+    F[Pertanyaan<br/>Pengguna] --> G{Deteksi Intent<br/>& Topik}
     G --> H[ChromaDB<br/>Retriever]
     E --> H
-    H --> I[Context + Prompt<br/>Builder]
+    H --> I[Penyusun Konteks<br/>& Prompt]
     
     I --> J[Qwen2.5-3B-Instruct<br/>4-bit / Tesla T4]
     J --> K[FastAPI<br/>Backend]
-    K --> L[SSE Stream]
+    K --> L[Stream SSE]
     L --> M[React + TailwindCSS<br/>Frontend]
 ```
 
 ---
 
-## Configuration
+## 🛠️ Konfigurasi
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VITE_API_URL` | FastAPI backend URL (Colab tunnel) | `http://localhost:8010` |
-| `HF_TOKEN` | Hugging Face access token (Colab secret) | — |
-| `EMBEDDING_MODEL` | Sentence embedding model | `BAAI/bge-m3` |
-| `MODEL_NAME` | LLM model | `Qwen/Qwen2.5-3B-Instruct` |
-| `CHROMA_DIR` | ChromaDB persistence path | `/content/chatbot-db/chroma_db` |
-| `PDF_DIR` | PDF source directory | `/gdrive/MyDrive/chatbot-pdfs` |
-| `chunk_size` | Document chunk size | 700 |
-| `chunk_overlap` | Chunk overlap | 150 |
-| `k` | Number of retrieved chunks | 15 |
+| Variabel | Deskripsi | Default |
+|----------|-----------|---------|
+| `VITE_API_URL` | URL backend FastAPI (tunnel Colab) | `http://localhost:8010` |
+| `HF_TOKEN` | Token akses Hugging Face (Colab secret) | — |
+| `EMBEDDING_MODEL` | Model sentence embedding | `BAAI/bge-m3` |
+| `MODEL_NAME` | Model LLM | `Qwen/Qwen2.5-3B-Instruct` |
+| `CHROMA_DIR` | Path penyimpanan ChromaDB | `/content/chatbot-db/chroma_db` |
+| `PDF_DIR` | Direktori sumber PDF | `/gdrive/MyDrive/chatbot-pdfs` |
+| `chunk_size` | Ukuran potongan dokumen | 700 |
+| `chunk_overlap` | Overlap antar potongan | 150 |
+| `k` | Jumlah potongan yang di-retrieve | 15 |
 
 ---
 
-## PDF Sources
+## 📦 Sumber PDF
 
-| PDF | Topics |
-|-----|--------|
+| PDF | Topik |
+|-----|-------|
 | `03. DASAR-DASAR PEMROGRAMAN.pdf` | Java, tipe data, identifier, operator, komentar |
 | `642863-dasar-dasar-coding-....pdf` | Coding, algoritma, percabangan, perulangan |
 | `Buku-Panduan-GenAI-....pdf` | AI, GenAI, T.U.C.E. Framework, etika akademik |
@@ -220,20 +252,20 @@ graph LR
 | `Pemrograman Web Dasar.pdf` | HTML, CSS, JavaScript, PHP |
 | `Pemrograman Komputer FULL.pdf` | Python, return, `__init__`, modul, file I/O |
 | `progit.pdf` | Git, branching, rebase, stash, bisect |
-| `pythonlearn.pdf` | Python fundamentals, strings, files, regex |
+| `pythonlearn.pdf` | Python dasar, strings, files, regex |
 
 ---
 
-## License
+## 📝 Lisensi
 
-This project is for educational and research purposes.
+Proyek ini untuk tujuan edukasi dan riset.
 
 ---
 
 <div align="center">
-  <sub>Built with using Google Colab · FastAPI · React · TailwindCSS</sub>
+  <sub>Dibuat dengan ❤️ menggunakan Google Colab · FastAPI · React · TailwindCSS</sub>
   <br/>
   <a href="https://colab.research.google.com/drive/1-842e9EH3hmfSBHJSPaVHu_Cduuh_p9k" target="_blank">
-    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" />
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Buka di Colab" />
   </a>
 </div>
